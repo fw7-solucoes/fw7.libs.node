@@ -1,0 +1,30 @@
+{
+  "name": "@fw7/node-errors",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "repository": "git@github.com:fw7-solucoes/fw7.libs.node.git",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint src",
+    "test": "jest ./tests/",
+    "test:watch": "yarn test --watchAll",
+    "test:coverage": "yarn test --coverage",
+    "build": "NODE_ENV=production sucrase ./src -d ./dist --transforms imports"
+  },
+  "devDependencies": {
+    "@sucrase/jest-plugin": "^2.0.0",
+    "eslint": "^6.2.2",
+    "eslint-config-standard": "^14.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^2.4.0",
+    "jest": "^24.8.0",
+    "sucrase": "^3.10.1"
+  },
+  "dependencies": {
+    "ramda": "^0.26.1"
+  }
+}
