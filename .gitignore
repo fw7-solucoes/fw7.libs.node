@@ -62,3 +62,6 @@ typings/
 
 # dist
 lib/
+
+# IDEs and editors
+.vscode/
