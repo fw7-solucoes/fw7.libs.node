@@ -8,7 +8,7 @@ const storeUserCreated = msg => console.log(JSON.parse(msg.content))
 
 ### Connecting to the host and creating channels
 ```
-import connect from '"@fw7/messaging'
+import connect from '@fw7/messaging'
 
 const publish = ['storeUserCreated']
 const host = 'http://localhost:4000/'
@@ -19,7 +19,7 @@ connect(consume, publish, { host })
 
 ### Publishing
 ```
-import publish from '@fw7/messaging/publisher'
+import publish from '@fw7/messaging/lib/publisher'
 
 const user = { name: 'test' }
 
