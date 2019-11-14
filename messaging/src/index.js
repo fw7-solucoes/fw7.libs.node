@@ -3,7 +3,7 @@ import { connect as publisher } from './publisher'
 import consumer from './consumer'
 
 const connect = (consume, publish, cfg) => {
-  amqp.connect(`amqp://${cfg.host || 'localhost'}`, (error, connection) => {
+  amqp.connect(cfg.host || 'localhost', (error, connection) => {
     if (error) throw error
 
     if (consume) consumer(connection, consume)
