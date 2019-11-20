@@ -1,5 +1,4 @@
 import R from 'ramda'
-import { toApolloError } from 'apollo-server'
 
 class FWError extends Error {
   constructor ({ message, code, ...rest }) {
@@ -10,17 +9,6 @@ class FWError extends Error {
       this[key] = value
     })
   }
-}
-
-export const formatError = error => {
-  const { extensions } = error
-
-  if (extensions && extensions.exception) {
-    const { code } = extensions.exception
-    return toApolloError(error, code)
-  }
-
-  return error
 }
 
 export const error = R.curry((code, message) => ({ code, message }))
