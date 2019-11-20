@@ -1,13 +1,15 @@
 import R from 'ramda'
-import { fieldError, throwErr } from './common'
+import { schemaError, throwErr } from './common'
 
 const JOI_OPTIONS = { abortEarly: false }
 
-const assocField = ({ message, context }) => fieldError(context.key, message)
+const toKeyMsgTuple = ({ message, context }) => [context.key, message]
 
 const formatJoiErrors = R.pipe(
   R.prop('details'),
-  R.map(assocField),
+  R.map(toKeyMsgTuple),
+  R.fromPairs,
+  schemaError,
   throwErr
 )
 
