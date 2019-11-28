@@ -5,7 +5,7 @@ const errorEq = R.propEq('validatorKey')
 const getError = R.pipe(
   R.head,
   R.cond([
-    [errorEq('not_unique'), ({ path, value }) => schemaError(R.fromPairs([path, `${value} já foi utilizado.`]))],
+    [errorEq('not_unique'), ({ path, value }) => schemaError(R.objOf(path, `${value} já foi utilizado.`))],
     [R.T, R.always(DEFAULT_ERROR)]
   ])
 )

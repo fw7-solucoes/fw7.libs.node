@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint src",
-    "test": "jest ./tests/",
+    "test": "jest",
     "test:watch": "yarn test --watchAll",
     "test:coverage": "yarn test --coverage",
     "build": "NODE_ENV=production sucrase ./src -d ./lib --transforms imports"
