@@ -1,4 +1,4 @@
-import { handleJoiError } from './index'
+import { handleJoiError } from '../src'
 
 const validate = jest.fn(({ name }) => (
   name

@@ -1,4 +1,4 @@
-import { handleDBError } from './index'
+import { handleDBError } from '../src'
 
 describe('sequelize', () => {
   test('should throw default error when errors prop is null', () => {

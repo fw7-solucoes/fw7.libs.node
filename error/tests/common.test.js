@@ -1,4 +1,4 @@
-import { error } from './index'
+import { error } from '../src'
 
 describe('common', () => {
   test('should return an object containing message and code props', () => {
