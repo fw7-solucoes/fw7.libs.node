@@ -1,4 +1,3 @@
-import { schemaError } from './common'
 import { handleDBError } from './index'
 
 describe('sequelize', () => {
