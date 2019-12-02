@@ -1,6 +1,6 @@
 {
   "name": "@fw7/messaging",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "lib/index.js",
   "repository": "git@github.com:fw7-solucoes/fw7.libs.node.git",
   "license": "MIT",
@@ -9,7 +9,8 @@
     "test": "jest ./tests/ --passWithNoTests",
     "test:watch": "yarn test --watchAll",
     "test:coverage": "yarn test --coverage",
-    "build": "NODE_ENV=production sucrase ./src -d ./lib --transforms imports"
+    "build": "NODE_ENV=production sucrase ./src -d ./lib --transforms imports",
+    "prepublish": "yarn build"
   },
   "files": [
     "lib"

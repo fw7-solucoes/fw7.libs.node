@@ -8,7 +8,10 @@ export const connect = (connection, publishers) => {
 
     publishers.forEach(exchange => {
       channel.assertExchange(exchange, 'fanout', assertCfg)
-      exchanges[exchange] = msg => channel.publish(exchange, '', Buffer.from(msg))
+      exchanges[exchange] = msg => {
+        const msgStr = Buffer.from(JSON.stringify(msg))
+        channel.publish(exchange, '', msgStr)
+      }
     })
   })
 }

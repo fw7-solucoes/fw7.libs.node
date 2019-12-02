@@ -13,7 +13,7 @@ const connect = (connection, exchanges) => {
         if (queueError) throw queueError
 
         channel.bindQueue(q.queue, exchange, '')
-        channel.consume(q.queue, fn, consumeCfg)
+        channel.consume(q.queue, msg => fn(JSON.parse(msg)), consumeCfg)
       })
     })
   })
