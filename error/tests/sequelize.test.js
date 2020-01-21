@@ -1,8 +1,9 @@
 import { handleDBError } from '../src'
 
 describe('sequelize', () => {
-  test('should throw default error when errors prop is null', () => {
-    expect(() => handleDBError({ errors: null })).toThrow('Houve algum erro no servidor, tente novamente.')
+  test('should throw original error when errors prop is null', () => {
+    const error = new Error('test')
+    expect(() => handleDBError(error)).toThrow(error)
   })
 
   test('should throw schema validation error when dbError is UK error', () => {
