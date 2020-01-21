@@ -1,9 +1,12 @@
 import amqp from 'amqplib/callback_api'
-import { connect as publisher } from './publisher'
-import consumer from './consumer'
 
-const connect = (consume, publish, cfg) => {
+import consumer from './consumer'
+import { connect as publisher } from './publisher'
+import { Consumer, ConnectionConfig } from './types'
+
+const connect = (consume: Consumer[], publish: string[], cfg: ConnectionConfig) => {
   amqp.connect(cfg.host || 'localhost', (error, connection) => {
+
     if (error) throw error
 
     if (consume) consumer(connection, consume)

@@ -1,17 +1,17 @@
 {
   "name": "@fw7/messaging",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "repository": "git@github.com:fw7-solucoes/fw7.libs.node.git",
   "license": "MIT",
   "scripts": {
     "lint": "eslint src",
     "test": "jest ./tests/ --passWithNoTests",
     "test:watch": "yarn test --watchAll",
-    "test:coverage": "yarn test --coverage",
-    "build": "NODE_ENV=production sucrase ./src -d ./lib --transforms imports",
-    "prepublish": "yarn build"
+    "test:coverage": "yarn test --coverage"
   },
+  "prepublish": "tsc --build",
   "files": [
     "lib"
   ],
@@ -22,6 +22,7 @@
   ],
   "devDependencies": {
     "@sucrase/jest-plugin": "^2.0.0",
+    "@types/amqplib": "^0.5.13",
     "eslint": "^6.2.2",
     "eslint-config-standard": "^14.0.1",
     "eslint-plugin-import": "^2.18.2",

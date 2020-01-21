@@ -1,8 +1,12 @@
+import { Connection } from "amqplib/callback_api"
+
+import { Consumer } from './types'
+
 const exchangeCfg = { durable: false }
 const assertCfg = { durable: false }
 const consumeCfg = { noAck: true }
 
-const connect = (connection, exchanges) => {
+const connect = (connection: Connection, exchanges: Consumer[]) => {
   connection.createChannel((error, channel) => {
     if (error) throw error
 
