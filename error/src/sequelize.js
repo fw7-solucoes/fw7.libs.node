@@ -11,16 +11,6 @@ const throwFirstError = R.pipe(
   throwErr
 )
 
-const handleDBError = R.pipe(
-  R.prop('errors'),
-  R.ifElse(
-    R.isNil,
-    R.always(DEFAULT_ERROR),
-    throwFirstError
-  ),
-  throwErr
-)
-
 const handleDBError = error => {
   if (!error.errors) {
     throwErr(error)
