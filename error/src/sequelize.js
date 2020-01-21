@@ -1,13 +1,14 @@
 import R from 'ramda'
-import { schemaError, throwErr, DEFAULT_ERROR } from './common'
+import { schemaError, throwErr } from './common'
 
 const errorEq = R.propEq('validatorKey')
-const getError = R.pipe(
+const throwFirstError = R.pipe(
   R.head,
   R.cond([
     [errorEq('not_unique'), ({ path, value }) => schemaError(R.objOf(path, `${value} já foi utilizado.`))],
-    [R.T, R.always(DEFAULT_ERROR)]
-  ])
+    [R.T, R.identity]
+  ]),
+  throwErr
 )
 
 const handleDBError = R.pipe(
@@ -15,9 +16,17 @@ const handleDBError = R.pipe(
   R.ifElse(
     R.isNil,
     R.always(DEFAULT_ERROR),
-    getError
+    throwFirstError
   ),
   throwErr
 )
+
+const handleDBError = error => {
+  if (!error.errors) {
+    throwErr(error)
+  }
+
+  throwFirstError(error.errors)
+}
 
 export default handleDBError
