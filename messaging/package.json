@@ -1,6 +1,6 @@
 {
   "name": "@fw7/messaging",
-  "version": "1.0.0-rc.0",
+  "version": "1.0.0-rc.2",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "repository": "git@github.com:fw7-solucoes/fw7.libs.node.git",
@@ -9,9 +9,9 @@
     "lint": "tslint --project tsconfig.json --config tslint.json",
     "test": "jest ./tests/ --passWithNoTests",
     "test:watch": "yarn test --watchAll",
-    "test:coverage": "yarn test --coverage"
+    "test:coverage": "yarn test --coverage",
+    "prepublish": "tsc --build"
   },
-  "prepublish": "tsc --build",
   "files": [
     "lib"
   ],
@@ -21,7 +21,6 @@
     "messaging"
   ],
   "devDependencies": {
-    "@sucrase/jest-plugin": "^2.0.0",
     "@types/amqplib": "^0.5.13",
     "husky": "^2.4.0",
     "jest": "^24.8.0",
