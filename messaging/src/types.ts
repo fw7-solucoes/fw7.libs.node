@@ -1,4 +1,4 @@
-import { Message } from "amqplib";
+import { Message } from 'amqplib'
 
 /**
  * Interfaces.

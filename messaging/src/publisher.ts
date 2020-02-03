@@ -1,30 +1,20 @@
-import { Connection, Channel } from 'amqplib/callback_api'
-
-/**
- * Types
- */
-type Exchange = {
-  [key: string]: Function
-}
-
-const exchanges: Exchange = {}
+import { Channel } from 'amqplib'
 
 const assertCfg = { durable: false }
 
-export const connect = (connection: Connection, publishers: string[]) => {
-  const fn = (error: any, channel: Channel) => {
-    if (error) throw error
+function connect<T>(channel: Channel, publishers: T): T {
+  const response = {}
 
-    publishers.forEach(exchange => {
-      channel.assertExchange(exchange, 'fanout', assertCfg)
-      exchanges[exchange] = (msg: Object) => {
-        const msgStr = Buffer.from(JSON.stringify(msg))
-        channel.publish(exchange, '', msgStr)
-      }
+  Object.keys(publishers).forEach(exchange => {
+    channel.assertExchange(exchange, 'fanout', assertCfg)
+
+    Object.assign(response, exchange, (msg: Object) => {
+      const msgStr = Buffer.from(JSON.stringify(msg))
+      channel.publish(exchange, '', msgStr)
     })
-  }
+  })
 
-  connection.createChannel(fn)
+  return response as T
 }
 
-export default exchanges
+export default connect
