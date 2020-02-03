@@ -1,13 +1,12 @@
 import { Message } from 'amqplib'
 
-/**
- * Interfaces.
- */
-export interface ConnectionConfig {
+export type ConnectionConfig = {
   host: string
 }
 
-export interface Consumer {
-  exchange: string,
+export type Consumer = {
+  exchange: string
   fn: (msg: Message | null) => any
 }
+
+export { Message } from 'amqplib'
