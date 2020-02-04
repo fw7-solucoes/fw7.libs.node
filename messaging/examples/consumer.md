@@ -1,5 +1,5 @@
 ```ts
-import connect from '@fw7/messaging'
+import connect, { Message, Consumer } from '@fw7/messaging'
 import { none } from 'fp-ts/lib/Option'
 
 const userCreated = (msg: Message | null) => {
