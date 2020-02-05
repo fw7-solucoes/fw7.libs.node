@@ -1,5 +1,9 @@
 import { Message } from 'amqplib'
 
+export type Publishers = {
+  [key: string]: Function
+}
+
 export type ConnectionConfig = {
   host: string
 }

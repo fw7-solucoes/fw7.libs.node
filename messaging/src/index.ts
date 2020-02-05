@@ -1,8 +1,8 @@
 import { connect, Message } from 'amqplib'
 import bindConsumers from './consumer'
 import bindPublishers from './publisher'
-import { Consumer, ConnectionConfig } from './types'
-import { Option, some, none, isNone } from 'fp-ts/lib/Option'
+import { Consumer, ConnectionConfig, Publishers } from './types'
+import { some, none } from 'fp-ts/lib/Option'
 
 export function getJsonContent<T>(msg: Message | null) {
   return !msg
@@ -10,14 +10,14 @@ export function getJsonContent<T>(msg: Message | null) {
     : some(JSON.parse(msg.content.toString()) as T)
 }
 
-async function start<T extends object>(cfg: ConnectionConfig, publish: Option<T>, consume: Consumer[]) {
+async function start<T extends Publishers>(cfg: ConnectionConfig, consume: Consumer[], publish?: T) {
   const open = await connect(cfg.host)
 
   const channel = await open.createChannel()
 
   bindConsumers(channel, consume)
 
-  return isNone(publish) ? none : some(bindPublishers(channel, publish.value))
+  return !publish ? none : some(bindPublishers(channel, publish))
 }
 
 export * from './types'
