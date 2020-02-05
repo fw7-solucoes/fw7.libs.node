@@ -15,7 +15,7 @@ async function start<T extends Publishers>(cfg: ConnectionConfig, consume: Consu
 
   const channel = await open.createChannel()
 
-  bindConsumers(channel, consume)
+  bindConsumers(channel, consume, cfg.queue)
 
   return !publish ? none : some(bindPublishers(channel, publish))
 }

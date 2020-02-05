@@ -6,6 +6,7 @@ export type Publishers = {
 
 export type ConnectionConfig = {
   host: string
+  queue?: string
 }
 
 export type Consumer = {

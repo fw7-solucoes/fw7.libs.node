@@ -1,5 +1,5 @@
 ```ts
-import connect, { Message, Consumer } from '@fw7/messaging'
+import connect from '@fw7/messaging'
 import { isSome } from 'fp-ts/lib/Option'
 
 type UserCreated = {
