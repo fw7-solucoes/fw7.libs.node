@@ -6,7 +6,11 @@ type UserCreated = {
   name: string
 }
 
-const publishers: Publishers = {
+type MyPublishers = {
+  userCreated: (message: UserCreated) => void
+}
+
+const publishers: MyPublishers = {
   userCreated: (message: UserCreated) => { }
 }
 

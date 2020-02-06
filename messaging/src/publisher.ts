@@ -2,7 +2,7 @@ import { Channel } from 'amqplib'
 
 const assertCfg = { durable: false }
 
-function connect<T extends object>(channel: Channel, publishers: T): T {
+const connect = <T extends object>(channel: Channel, publishers: T) => {
   const response = {}
 
   Object.keys(publishers).forEach(exchange => {
@@ -21,7 +21,15 @@ function connect<T extends object>(channel: Channel, publishers: T): T {
     )
   })
 
-  return response as T
+  const dispatch = (exchange: string, msg: Object) => {
+    const msgStr = Buffer.from(JSON.stringify(msg))
+    channel.publish(exchange, '', msgStr)
+  }
+
+  return {
+    dispatch,
+    ...(response as T)
+  }
 }
 
 export default connect
