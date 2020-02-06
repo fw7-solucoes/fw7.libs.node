@@ -6,12 +6,8 @@ type UserCreated = {
   name: string
 }
 
-type MyExchanges = {
-  userCreated: (userCreated: UserCreated) => void
-}
-
-const publishers: MyExchanges = {
-  userCreated: () => { }
+const publishers: Publishers = {
+  userCreated: (message: UserCreated) => { }
 }
 
 const getPublishers = connect({ host: 'localhost' }, [], publishers)
