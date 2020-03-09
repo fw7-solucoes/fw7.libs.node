@@ -1,6 +1,6 @@
 {
   "name": "@fw7/messaging",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "repository": "git@github.com:fw7-solucoes/fw7.libs.node.git",
