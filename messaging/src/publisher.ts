@@ -12,6 +12,7 @@ const connect = <T extends object>(channel: Channel, publishers: T) => {
       response,
       exchange,
       {
+        enumerable: true,
         writable: false,
         value: (msg: Object) => {
           const msgStr = Buffer.from(JSON.stringify(msg))
